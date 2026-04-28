@@ -3,34 +3,25 @@
 <head>
   <meta charset="utf-8">
   
-  <title>连接远程服务器出现乱码 | ZOU</title>
+  <title>linux进行JavaEE开发的环境配置 | ZOU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    <meta name="keywords" content="linux,secureCRT,乱码,命令行" />
   
   
   
-  
-  <meta name="description" content="连接远程服务器后出现命令行乱码真是巧了，最近遇到的事儿净跟编码有关，好像中了毒一样。话不多说，看乱码。">
+  <meta name="description" content="Linux下进行JavaEE开发，安装JDK、Tomcat、MySQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="连接远程服务器出现乱码">
-<meta property="og:url" content="https://goodzou.github.io/2020/0419/index.html">
+<meta property="og:title" content="linux进行JavaEE开发的环境配置">
+<meta property="og:url" content="https://goodzou.github.io/2023/0711/index.html">
 <meta property="og:site_name" content="ZOU">
-<meta property="og:description" content="连接远程服务器后出现命令行乱码真是巧了，最近遇到的事儿净跟编码有关，好像中了毒一样。话不多说，看乱码。">
+<meta property="og:description" content="Linux下进行JavaEE开发，安装JDK、Tomcat、MySQL">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200419212122295.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200419214524425.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200419214829854.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200419214956728.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200419215401157.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200419221542948.gif#pic_center">
-<meta property="article:published_time" content="2020-04-19T14:27:06.000Z">
-<meta property="article:modified_time" content="2026-02-11T15:26:48.498Z">
+<meta property="article:published_time" content="2023-07-11T02:11:52.000Z">
+<meta property="article:modified_time" content="2026-04-28T03:47:44.630Z">
 <meta property="article:author" content="zou">
-<meta property="article:tag" content="问题">
-<meta property="article:tag" content="linux">
+<meta property="article:tag" content="ZOU">
+<meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200419212122295.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center">
   
   <link rel="icon" href="/images/logo_sail.png">
   
@@ -112,7 +103,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-连接远程服务器出现乱码" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-Linux下进行JavaEE开发，安装JDK" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -120,7 +111,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      连接远程服务器出现乱码
+      linux进行JavaEE开发的环境配置
     </h1>
   
 
@@ -128,8 +119,8 @@
     
     <div class="article-meta">
       
-	<a href="/2020/0419/" class="article-date">
-	  <time datetime="2020-04-19T14:27:06.000Z" itemprop="datePublished">四月 19, 2020</time>
+	<a href="/2023/0711/" class="article-date">
+	  <time datetime="2023-07-11T02:11:52.000Z" itemprop="datePublished">七月 11, 2023</time>
 	</a>
 
       
@@ -144,12 +135,55 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="连接远程服务器后出现命令行乱码"><a href="#连接远程服务器后出现命令行乱码" class="headerlink" title="连接远程服务器后出现命令行乱码"></a>连接远程服务器后出现命令行乱码</h3><p>真是巧了，最近遇到的事儿净跟编码有关，好像中了毒一样。话不多说，看乱码。<span id="more"></span><br><img src="https://img-blog.csdnimg.cn/20200419212122295.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="linux命令行乱码">大家已经看到了，连上服务器后的写个文件的目录命令，就只拉出了四个字，呃，不对，还有一个零蛋。好，这种乱码现象其实已经多见少怪了，然而还是有原因的，不然我怎么会写个博客记录一下。值得注意的就是在命令行出现乱码的情况很少，还是敲了命令之后，何况有的小伙伴还不熟悉linux系统的操作，更不知道怎么办了。慌了手脚，求救网页标签都打开了好几个，还是不知道咋弄，于是小伙伴只好四下求救大佬。<br>今天我就带大家一块干了。。</p>
-<h3 id="so-到了面对编码的时候了"><a href="#so-到了面对编码的时候了" class="headerlink" title="so 到了面对编码的时候了"></a>so 到了面对编码的时候了</h3><p> 大家还记得上次讲过的编码格式问题吧，这次就不是转成Ansy格式了，要在secureCRT把编码格式转成utf-8格式，为什么呢？因为默认的secureCRT命令行不是utf-8,也不是中文字符集，所以就要改一改。如果小伙伴用的是中文破解版的，点击菜单栏中选择里会话选项，英文为option,界面如下，在外观(appearance)那里的字符编码选择那选择utf-8<br> <img src="https://img-blog.csdnimg.cn/20200419214524425.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="option会话选项"><br> 字体选择自己喜欢的，但是要中文字符集gb2312</p>
-<p><img src="https://img-blog.csdnimg.cn/20200419214829854.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="字体">OK啦，解决问题啦，就有如下对比</p>
-<p><img src="https://img-blog.csdnimg.cn/20200419214956728.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="命令输入"><br>这样就顺顺利利地干了它了，哈哈，心里是不是很爽啊。如果大家对界面背景不满意同样可以调节，比如背景为黑色，命令前景为白色或黑客绿(瞎装逼色)，看图</p>
-<p><img src="https://img-blog.csdnimg.cn/20200419215401157.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="黑客绿"> <code>如果小伙伴还弄不明白，那只能献上本人亲自为大家制作的动图了（不信你看不懂）</code></p>
-<p><img src="https://img-blog.csdnimg.cn/20200419221542948.gif#pic_center" alt="亲力亲为动图"><br>好啦，以上就是小码码的学习心得，希望对大家有帮助，喜欢的话就点赞，留言哦，哈哈。<br>附<a target="_blank" rel="noopener" href="https://blog.csdn.net/Gobullin">小码码官方博客</a></p>
+        <p>Linux下进行JavaEE开发，安装JDK、Tomcat、MySQL<span id="more"></span></p>
+<p><strong>(1)安装JDK步骤：</strong></p>
+<p>1、创建目录mkdir   &#x2F;opt&#x2F;jdk</p>
+<p>2、将jdk压缩包通过xftp6上传到该目录</p>
+<p>3、cd  &#x2F;opt&#x2F;jdk</p>
+<p>4、tar -zxvf  jdk-8u151-linux-x64.tar.gz</p>
+<p>5、mkdir  &#x2F;usr&#x2F;local&#x2F;java</p>
+<p>6、mv  &#x2F;opt&#x2F;jdk&#x2F;jdk1.8.0_151  &#x2F;usr&#x2F;local&#x2F;java</p>
+<p>7、修改环境变量配置文件vim &#x2F;etc&#x2F;profile</p>
+<p>8、<code>export  JAVA_HOME=/usr/local/java/jdk1.8.0_151</code></p>
+<p>9、<code>export  PATH=$JAVA_HOME/bin:$PATH</code></p>
+<p>10、更新环境变量source  &#x2F;etc&#x2F;profile </p>
+<p>测试是否配置成功，编写hello.java输出hello java。  </p>
+<p><strong>(2)安装Tomcat步骤：</strong></p>
+<p>1、创建文件夹mkdir  &#x2F;opt&#x2F; tomcat</p>
+<p>2、将apache-tomcat-8.5.95.tar.gz上传至该文件夹</p>
+<p>（注意：不要下载src源码版或exe二进制版的包）</p>
+<p>3、解压</p>
+<p><code>tar -zxvf apache-tomcat-8.5.95.tar.gz</code></p>
+<p>4、进入解压目录&#x2F;bin，.&#x2F;startup.sh启动tomcat（用户要有执行权限）</p>
+<p>5、防火墙开放8080端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd  --permanent  --add-port=8080/tcp</span><br><span class="line">firewall-cmd  --reload</span><br></pre></td></tr></table></figure>
+
+<p><strong>(3)安装MySQL步骤</strong></p>
+<p>1、从Mysql官网或阿里云镜像网站<a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/mysql%EF%BC%8C%E4%B8%8B%E8%BD%BDMySQL%E7%9A%84%E5%AE%89%E8%A3%85%E5%8C%85mysql-5.7.38-1.el7.x86_64.rpm-bundle.tar">https://mirrors.aliyun.com/mysql，下载MySQL的安装包mysql-5.7.38-1.el7.x86_64.rpm-bundle.tar</a></p>
+<p>2、新建文件夹&#x2F;opt&#x2F;mysql</p>
+<p>3、删除CentOS原有的Mariadb数据库，通过rpm -qa | grep maria查看</p>
+<p>4、删除mariadb</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm  -e  --nodeps  maria</span><br><span class="line">rpm -e  --nodeps  mariadb-libs-5.5.68-1.el7.x86_64</span><br></pre></td></tr></table></figure>
+
+<p>5、通过xftp将下载好的mysql安装包传输到&#x2F;opt&#x2F;mysql下</p>
+<p>6、解安装包mysql-5.7.37-1.el7.x86_64.rpm-bundle.tar，得到rpm包如下</p>
+<p><code>tar -xvf  mysql-5.7.38-1.el7.x86_64.rpm-bundle.tar</code></p>
+<p>mysql-community-client-5.7.38-1.el7.x86_64.rpm<br>mysql-community-common-5.7.38-1.el7.x86_64.rpm<br>mysql-community-devel-5.7.38-1.el7.x86_64.rpm<br>mysql-community-embedded-5.7.38-1.el7.x86_64.rpm<br>mysql-community-embedded-compat-5.7.38-1.el7.x86_64.rpm<br>mysql-community-embedded-devel-5.7.38-1.el7.x86_64.rpm<br>mysql-community-libs-5.7.38-1.el7.x86_64.rpm<br>mysql-community-libs-compat-5.7.38-1.el7.x86_64.rpm<br>mysql-community-server-5.7.38-1.el7.x86_64.rpm<br>mysql-community-test-5.7.38-1.el7.x86_64.rpm</p>
+<p>7、开始安装对应rpm包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh  mysql-community-common-5.7.38-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  mysql-community-libs-5.7.38-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  mysql-community-client-5.7.38-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  mysql-community-server-5.7.38-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<p>8、运行mysql</p>
+<p><code>systemctl start mysqld.service</code>   (默认开机自启动)</p>
+<p>9、查看当前mysql密码</p>
+<p><code>grep &quot;password&quot; /var/log/mysqld.log</code></p>
+<p>10、登录mysql修改密码</p>
+<p><code>mysql  -u  root  -p  密码</code></p>
+<p><code>set password  for  &#39;root&#39;@&#39;localhost&#39;=password(&quot;12345678&quot;);</code></p>
+<p>可设置密码策略：默认为1，要求长度，数字，字母大小写，特殊字符。</p>
+<p><code>set global validate_password_policy=0;</code></p>
+<p>11、使密码生效</p>
+<p><code>flush privileges;</code></p>
+<p>12、Ctrl+Z退出</p>
 
       
     </div>
@@ -159,9 +193,6 @@
     <a class="article-category-link" href="/categories/linux/">linux</a>
 
       
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li></ul>
-
       
     </footer>
     <hr class="entry-footer-hr">
@@ -170,15 +201,20 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/0523/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/0724/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          SQL server连接本地数据库的两个问题
+          7月感悟
         
       </div>
     </a>
   
+  
+    <a href="/2023/0208/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">写在大学最后的时光</div>
+    </a>
   
 </nav>
 
@@ -191,7 +227,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E5%87%BA%E7%8E%B0%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%B1%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">连接远程服务器后出现命令行乱码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#so-%E5%88%B0%E4%BA%86%E9%9D%A2%E5%AF%B9%E7%BC%96%E7%A0%81%E7%9A%84%E6%97%B6%E5%80%99%E4%BA%86"><span class="nav-number">2.</span> <span class="nav-text">so 到了面对编码的时候了</span></a></li></ol>
+      <ol class="nav">无</ol>
     
     </div>
   </aside>

@@ -11,12 +11,12 @@
   
   
   
-  <meta name="description" content="SQL Server连接本地数据库时的异常 最近想学点SQL server,几个月前下过，可中间电脑换过机名，重装过系统(电脑不是键盘一下没反应就是鼠标没反应)，充分暴露出windows的不稳定。这告诉我们：要早点和windows离婚吧，换一个漂亮又好用点的linux系统(关键是免费开源)，如果有钱可以跟风mac。哈哈！所以呢，系统里的环境变量全部没了，除了操作系统本身的变量外。经验告诉我们：换系">
+  <meta name="description" content="最近想学点SQL server,几个月前下过，可中间电脑换过机名，重装过系统(电脑不是键盘一下没反应就是鼠标没反应)，充分暴露出windows的不稳定。这告诉我们：要早点和windows离婚吧，换一个漂亮又好用点的linux系统(关键是免费开源)，如果有钱可以跟风mac。哈哈！所以呢，系统里的环境变量全部没了，除了操作系统本身的变量外。经验告诉我们：换系统就是换血，把C盘的除系统外的渣渣都清除了，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL server连接本地数据库的两个问题">
 <meta property="og:url" content="https://goodzou.github.io/2020/0523/index.html">
 <meta property="og:site_name" content="ZOU">
-<meta property="og:description" content="SQL Server连接本地数据库时的异常 最近想学点SQL server,几个月前下过，可中间电脑换过机名，重装过系统(电脑不是键盘一下没反应就是鼠标没反应)，充分暴露出windows的不稳定。这告诉我们：要早点和windows离婚吧，换一个漂亮又好用点的linux系统(关键是免费开源)，如果有钱可以跟风mac。哈哈！所以呢，系统里的环境变量全部没了，除了操作系统本身的变量外。经验告诉我们：换系">
+<meta property="og:description" content="最近想学点SQL server,几个月前下过，可中间电脑换过机名，重装过系统(电脑不是键盘一下没反应就是鼠标没反应)，充分暴露出windows的不稳定。这告诉我们：要早点和windows离婚吧，换一个漂亮又好用点的linux系统(关键是免费开源)，如果有钱可以跟风mac。哈哈！所以呢，系统里的环境变量全部没了，除了操作系统本身的变量外。经验告诉我们：换系统就是换血，把C盘的除系统外的渣渣都清除了，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200521170345860.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2020052117542694.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center">
@@ -30,9 +30,8 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200521180652720.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200521180951615.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200521181319650.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200427213721746.jpg#pic_center">
 <meta property="article:published_time" content="2020-05-22T21:46:14.000Z">
-<meta property="article:modified_time" content="2026-04-20T15:56:11.376Z">
+<meta property="article:modified_time" content="2026-04-28T03:23:25.483Z">
 <meta property="article:author" content="zou">
 <meta property="article:tag" content="SQLserver">
 <meta name="twitter:card" content="summary">
@@ -150,50 +149,39 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="SQL-Server连接本地数据库时的异常"><a href="#SQL-Server连接本地数据库时的异常" class="headerlink" title="SQL Server连接本地数据库时的异常"></a>SQL Server连接本地数据库时的异常</h4><hr>
-<p>最近想学点SQL server,几个月前下过，可中间电脑换过机名，重装过系统(电脑不是键盘一下没反应就是鼠标没反应)，充分暴露出windows的不稳定。这告诉我们：要早点和windows离婚吧，换一个漂亮又好用点的linux系统(关键是免费开源)，如果有钱可以跟风mac。哈哈！所以呢，系统里的环境变量全部没了，除了操作系统本身的变量外。经验告诉我们：换系统就是换血，把C盘的除系统外的渣渣都清除了，还好是其他盘的东西还在，不过又得手动配置她们的变量了。</p>
-<hr>
+        <p>最近想学点SQL server,几个月前下过，可中间电脑换过机名，重装过系统(电脑不是键盘一下没反应就是鼠标没反应)，充分暴露出windows的不稳定。这告诉我们：要早点和windows离婚吧，换一个漂亮又好用点的linux系统(关键是免费开源)，如果有钱可以跟风mac。哈哈！所以呢，系统里的环境变量全部没了，除了操作系统本身的变量外。经验告诉我们：换系统就是换血，把C盘的除系统外的渣渣都清除了，还好是其他盘的东西还在，不过又得手动配置她们的变量了。</p>
 <span id="more"></span>
-<h5 id="01-SQL-SERVER初探"><a href="#01-SQL-SERVER初探" class="headerlink" title="01 SQL SERVER初探"></a>01 SQL SERVER初探</h5><p>初入SQL SERVER的可能不知道有两种版本分类的SQL SERVER，那现在就普及一下。第一种是MSSQL SERVER,全称是Microsoft SQL Sever，开发版，目前的大型网站一般使用Oracle或者MSSQL，JSP.PHP.ASP都可以。一般是企业级的商务网站使用的。全功能SQL数据库服务器，从2017版开始，横跨任何平台，完全免费。第二种是Express ，商业免费，有对应的限制一般都用这个。是SQL SERVER的简洁版，可以这样说。</p>
+
+<p>能不知道有两种版本分类的SQL SERVER，那现在就普及一下。第一种是MSSQL SERVER,全称是Microsoft SQL Sever，开发版，目前的大型网站一般使用Oracle或者MSSQL，JSP.PHP.ASP都可以。一般是企业级的商务网站使用的。全功能SQL数据库服务器，从2017版开始，横跨任何平台，完全免费。第二种是Express ，商业免费，有对应的限制一般都用这个。是SQL SERVER的简洁版，可以这样说。</p>
 <p> 但开始我也不懂啊，也没人叫我怎么玩哈，所以最近发现SQL不见了，就急忙下个SQL server2019最新版的玩一下。不行的是下载了6个多G，连带管理工具一起下(都是开热点的流量啊！啊啊！)，N久后，才下完！然后安装！！！N久。</p>
 <p>起初是发现从前的2017版的没有了，主要是SSMS没有，SSMS是SQL SERVER Management Studio,SQL SERVER管理工具，用来管理数据库的，而我们下的是SQL SERVER的一个下载工具罢了。没SSMS还是玩不起来。</p>
-<hr>
-<h5 id="02-第一个问题：配置管理器无法连接到-WMI-提供程序"><a href="#02-第一个问题：配置管理器无法连接到-WMI-提供程序" class="headerlink" title="02  第一个问题：配置管理器无法连接到 WMI 提供程序"></a>02  第一个问题：配置管理器无法连接到 WMI 提供程序</h5><p> 这个<strong>问题</strong>我记住你了，化成灰我都认得你！！</p>
-<p> <img src="https://img-blog.csdnimg.cn/20200521170345860.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="配置管理器异常">弄了我一整晚，网上都查遍了，每个有效的方法。现在给大家清楚讲一遍，按上面的说，WMI,（Windows Management Instrumentation 即windows 管理规范）是一项核<br>心的 Windows 管理技术；<strong>用户可以使用 WMI 管理本地和远程计算机</strong>。简单点，就是管本地和远程计算机的一个东西。有点内味了！！也就是说要这个服务来帮助SQL配置管理器管理计算机的，那怎么管呢？</p>
+<h4 id="第一个问题：配置管理器无法连接到-WMI-提供程序"><a href="#第一个问题：配置管理器无法连接到-WMI-提供程序" class="headerlink" title="第一个问题：配置管理器无法连接到 WMI 提供程序"></a>第一个问题：配置管理器无法连接到 WMI 提供程序</h4><p> <img src="https://img-blog.csdnimg.cn/20200521170345860.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="配置管理器异常"></p>
+<p>弄了我一整晚，网上都查遍了，每个有效的方法。现在给大家清楚讲一遍，按上面的说，WMI,（Windows Management Instrumentation 即windows 管理规范）是一项核心的 Windows 管理技术；<strong>用户可以使用 WMI 管理本地和远程计算机</strong>。简单点，就是管本地和远程计算机的一个东西。有点内味了！！也就是说要这个服务来帮助SQL配置管理器管理计算机的，那怎么管呢？</p>
 <p>有两种解决方法：要么是没权限，弄权限；要么是服务器真的不能访问了，解决服务器。很明显，连自己的本地的机子，还说无法访问，那就是没权限啦。查查了半天，说要弄一个NETWORK SERVICE的权限，也弄了没反应，估计还不够吧！之后又有其他办法，说进如：”C:\Program Files (x86)\Microsoft SQL Server”里面，我的是这样的，里面是90‘100’120‘的数字文件夹(跟系统打交道的)，不是真正的SQL SERVER文件夹(有界面的那个)。</p>
 <p>其中有一个shared文件夹里有150\Shared\sqlmgmproviderxpsp2up.mof这个文件。<br><img src="https://img-blog.csdnimg.cn/2020052117542694.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="sql~mof"></p>
 <p>我的是150&#x2F;，可能不一样。之后在命令行输入：</p>
-<blockquote>
-<p>mofcomp “C:\Program Files(x86)\Microsoft<br>SQLServer\150\Shared\sqlmgmproviderxpsp2up.mof”</p>
-</blockquote>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mofcomp &quot;C:\Program Files(x86)\Microsoft</span><br><span class="line">SQLServer\<span class="number">150</span>\Shared\sqlmgmproviderxpsp2up.mof&quot;</span><br></pre></td></tr></table></figure>
+
 <p>结果：<br><img src="https://img-blog.csdnimg.cn/20200521173114764.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="将本地数据放到SQL储存库中"><br>将本地数据放到SQL储存库中了，就表示能访问到。那mof是个什么东西呢！</p>
 <p><img src="https://img-blog.csdnimg.cn/20200521173617862.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="mof"></p>
 <p> 反正就是微软瞎造的东西，跟配置有关。不管了！可以正常打开配置管理器，但是里面项目为空，啥也看不到呀！正常是这样的：</p>
 <p><img src="https://img-blog.csdnimg.cn/20200521174143779.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="正常"></p>
 <p>但是右边什么也没有，而且，SSMS还是连不上本地的数据库实例。</p>
-<hr>
-<h5 id="第二个问题：系统找不到指定的文件"><a href="#第二个问题：系统找不到指定的文件" class="headerlink" title="第二个问题：系统找不到指定的文件"></a>第二个问题：系统找不到指定的文件</h5><p>GUI是这样的：<br><img src="https://img-blog.csdnimg.cn/20200521174341368.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="系统找不到指定的文件"><br>本来是输入个本机名字就行了，可就是死活连不上。SSMS: 想玩我？没门！这个时候，还是用的2017的SQL配置管理器，2019的SQLEXPRESS，连2019的配置管理器都没有，当然弄不了了。那之前的努力都白搭，花了我N久弄完！</p>
-<p>其实挺简单的，一步解决上面两个问题，还能使用最新的2019SQL SERVER。对啦，就是重新安装，不用开浏览器上什么官网，直接follow me。哈哈！</p>
+<h4 id="第二个问题：系统找不到指定的文件"><a href="#第二个问题：系统找不到指定的文件" class="headerlink" title="第二个问题：系统找不到指定的文件"></a>第二个问题：系统找不到指定的文件</h4><p>GUI是这样的：<br><img src="https://img-blog.csdnimg.cn/20200521174341368.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="系统找不到指定的文件"><br>本来是输入个本机名字就行了，可就是死活连不上。SSMS: 想玩我？没门！这个时候，还是用的2017的SQL配置管理器，2019的SQLEXPRESS，连2019的配置管理器都没有，当然弄不了了。那之前的努力都白搭，花了我N久弄完！</p>
+<p>其实挺简单的，一步解决上面两个问题，还能使用最新的2019SQL SERVER。对啦，就是重新安装，不用开浏览器上什么官网！</p>
 <p>找到SQL SERBER的安装目录，就是那个有安装的SQL server2019：</p>
-<hr>
-<p> D盘文件夹：<br> <img src="https://img-blog.csdnimg.cn/20200521180118799.PNG#pic_center" alt="SQL文件"></p>
+<p>D盘文件夹：<br> <img src="https://img-blog.csdnimg.cn/20200521180118799.PNG#pic_center" alt="SQL文件"></p>
 <p>sqlserver文件夹里是这样的：</p>
 <p><img src="https://img-blog.csdnimg.cn/20200521181435401.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="新的本地实例MSSQL1.5"></p>
 <p>之后一路默认安装：</p>
 <p><img src="https://img-blog.csdnimg.cn/20200521180336817.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="SQL 安装中心"></p>
-<hr>
 <p>安装期间会同时实例化本地的数据库，以windows管理员的身份管理，完成后就能看到开始菜单里有2019配置管理器了：</p>
 <p><img src="https://img-blog.csdnimg.cn/20200521180652720.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="开始菜单"></p>
 <p>sercice服务里也会有SQL服务，之前是没有的，即使解决了第一个问题后。估计这就是第二个问题没解决的原因吧！没SQL server服务，就没得玩喽！</p>
 <p><img src="https://img-blog.csdnimg.cn/20200521180951615.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="SQLsever服务"></p>
-<hr>
-<p>所以最后献上玩美结果：</p>
+<p>所以最后结果：</p>
 <p><img src="https://img-blog.csdnimg.cn/20200521181319650.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dvYnVsbGlu,size_16,color_FFFFFF,t_70#pic_center" alt="连上了本地"></p>
-<p>哈哈，如果要用Network service权限解决的话请参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_17532383/article/details/45542605?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522159005588419724811810680%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&request_id=159005588419724811810680&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_v2~rank_v25-7-45542605.nonecase&utm_term=sql%E6%97%A0%E6%B3%95WMI">另一篇</a><br>最后祝大家玩的愉快！！</p>
-<hr>
-<p>最后附上：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Gobullin">小码csdn</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/coderma">博客园</a><br>微信公众号：小码之光</p>
-<p> <img src="https://img-blog.csdnimg.cn/20200427213721746.jpg#pic_center" alt="小码之光"></p>
-<hr>
+<p>如果要用Network service权限解决的话请参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_17532383/article/details/45542605?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522159005588419724811810680%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&request_id=159005588419724811810680&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_v2~rank_v25-7-45542605.nonecase&utm_term=sql%E6%97%A0%E6%B3%95WMI">另一篇</a></p>
 
       
     </div>
@@ -224,11 +212,6 @@
     </a>
   
   
-    <a href="/2020/0419/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">连接远程服务器出现乱码</div>
-    </a>
-  
 </nav>
 
   
@@ -240,7 +223,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL-Server%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93%E6%97%B6%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="nav-number">1.</span> <span class="nav-text">SQL Server连接本地数据库时的异常</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#01-SQL-SERVER%E5%88%9D%E6%8E%A2"><span class="nav-number">1.1.</span> <span class="nav-text">01 SQL SERVER初探</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#02-%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E5%99%A8%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E5%88%B0-WMI-%E6%8F%90%E4%BE%9B%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.2.</span> <span class="nav-text">02  第一个问题：配置管理器无法连接到 WMI 提供程序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9A%E7%B3%BB%E7%BB%9F%E6%89%BE%E4%B8%8D%E5%88%B0%E6%8C%87%E5%AE%9A%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">第二个问题：系统找不到指定的文件</span></a></li></ol></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E5%99%A8%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E5%88%B0-WMI-%E6%8F%90%E4%BE%9B%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">第一个问题：配置管理器无法连接到 WMI 提供程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9A%E7%B3%BB%E7%BB%9F%E6%89%BE%E4%B8%8D%E5%88%B0%E6%8C%87%E5%AE%9A%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">第二个问题：系统找不到指定的文件</span></a></li></ol>
     
     </div>
   </aside>
